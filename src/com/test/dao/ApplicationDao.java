@@ -1,7 +1,9 @@
 package com.test.dao;
 
 import com.test.beans.Product;
+import com.test.beans.User;
 import java.util.*;
+
 import java.sql.*;
 
 public class ApplicationDao {
@@ -25,5 +27,27 @@ public class ApplicationDao {
 			e.printStackTrace();
 		}
 		return products;
+	}
+	
+	public int registerUser(User user) {
+		int rowsAffected = 0;
+		try {
+			Connection myConn = DBConnection.getConnectionToDatabase();
+			// sql
+			String sqlQuery = "insert into users values(?,?,?,?,?,?)";
+			PreparedStatement statement = myConn.prepareStatement(sqlQuery);
+			statement.setString(1, user.getUsername());
+			statement.setString(2, user.getPassword());
+			statement.setString(3, user.getFirstName());
+			statement.setString(4, user.getLastName());
+			statement.setInt(5, user.getAge());
+			statement.setString(6, user.getActivity());
+			// execute
+			rowsAffected = statement.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rowsAffected;
 	}
 }
