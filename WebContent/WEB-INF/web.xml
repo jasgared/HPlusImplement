@@ -12,5 +12,8 @@
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern></url-pattern>
-  </servlet-mapping>
+  </servlet-mapping><!--This is ServletContext API, where the parameters mentioned are global to all the servlets--><context-param>
+  	<param-name>DbURL</param-name>
+  	<param-value>jdbc:mysql://localhost:3306/hplus</param-value>
+</context-param>
 </web-app>
