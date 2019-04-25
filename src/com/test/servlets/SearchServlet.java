@@ -31,11 +31,15 @@ public class SearchServlet extends HttpServlet {
 		ApplicationDao dao = new ApplicationDao();
 		List<Product> products = dao.searchProducts(searchItem);
 		
-		// show the result from db on the page
-		String page = getHTMLString(request.getServletContext().getRealPath("/html/searchResults.html"),products);
+//		// show the result from db on the page using servlet
+//		String page = getHTMLString(request.getServletContext().getRealPath("/html/searchResults.html"),products);
 		
-		response.getWriter().write(page);
+		// setting attribute so that it can be passed with products
+		request.setAttribute("products", products);
 		
+		// printing on page using jsp
+		request.getRequestDispatcher("/jsp/searchResults.jsp").forward(request, response);
+				
 	}
 
 	
