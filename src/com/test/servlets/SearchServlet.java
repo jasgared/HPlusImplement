@@ -27,6 +27,8 @@ public class SearchServlet extends HttpServlet {
 
 		String searchItem = request.getParameter("search");
 		
+		request.getSession().setAttribute("search", searchItem); // search term to session, so can generate results through ProductsServlet
+		
 		// Send search item to search in DB
 		ApplicationDao dao = new ApplicationDao();
 		List<Product> products = dao.searchProducts(searchItem);

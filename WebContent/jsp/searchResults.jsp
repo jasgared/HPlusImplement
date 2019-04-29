@@ -26,9 +26,17 @@
 				high-quality, nutrient-rich, nutritional products that <em>enhance
 					active lifestyles</em>.
 			</p>
+			<% if(session.getAttribute("cart") != null) { %>
 			<p>
-				<span id="size">Items in Cart: {6}</span>
+				<span id="size" title = "<%=((ArrayList<String>)session.getAttribute("cart")) %>">Items in Cart: <%=((ArrayList<String>)session.getAttribute("cart")).size() %></span>
 			</p>
+				
+			<% } else {%>
+			<p>
+				<span id = "size">Items in Cart: 0</span>
+			</p>
+			<% } %>
+			
 		</div>
 		<div class="productContainer">
 			<!-- producing results using scriptlet -->
@@ -38,7 +46,7 @@
 				while(iterator.hasNext()){
 					Product product = iterator.next();
 			%>
-						<form>
+						<form method="get" action="addProducts">
 			
 							<div class="productContainerItem">
 								<img id="pic1" src=<%=product.getProductImgPath() %>> <input type="text" name="product"
