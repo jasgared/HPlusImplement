@@ -17,4 +17,8 @@
     <param-name>DbURL</param-name>
     <param-value>jdbc:mysql://localhost:3306/hplus</param-value>
   </context-param>
+  
+  <listener>
+  <listener-class>com.test.listeners.ApplicationListener</listener-class>
+  </listener>
 </web-app>

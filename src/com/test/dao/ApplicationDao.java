@@ -8,10 +8,9 @@ import java.sql.*;
 
 public class ApplicationDao {
 	
-	public List<Product> searchProducts(String searchTerm){
+	public List<Product> searchProducts(String searchTerm, Connection myConn){
 		List<Product> products = new ArrayList<>();
 		try {
-			Connection myConn = DBConnection.getConnectionToDatabase();
 			Product product = null;
 			Statement stmt = myConn.createStatement();
 			String query = "SELECT * FROM products where product_name LIKE '%" + searchTerm + "%'";

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -29,9 +30,12 @@ public class SearchServlet extends HttpServlet {
 		
 		request.getSession().setAttribute("search", searchItem); // search term to session, so can generate results through ProductsServlet
 		
+		// get the connection from servletContext
+		Connection myConn = (Connection) getServletContext().getAttribute("dbconnection");
+		
 		// Send search item to search in DB
 		ApplicationDao dao = new ApplicationDao();
-		List<Product> products = dao.searchProducts(searchItem);
+		List<Product> products = dao.searchProducts(searchItem, myConn);
 		
 //		// show the result from db on the page using servlet
 //		String page = getHTMLString(request.getServletContext().getRealPath("/html/searchResults.html"),products);
