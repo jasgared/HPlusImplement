@@ -50,4 +50,36 @@ public class ApplicationDao {
 		}
 		return rowsAffected;
 	}
+	
+	public boolean validateUser(String username, String password) {
+		boolean isValidUser = false;
+		
+		
+		Connection myConn = DBConnection.getConnectionToDatabase();
+		// create a prepared statement
+		
+		String sqlQuery = "select * from users where username=? and password=?";
+		PreparedStatement stmt;
+		try {
+			
+			stmt = myConn.prepareStatement(sqlQuery);
+			// set statement variables
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			
+			// execute the query
+			ResultSet result = stmt.executeQuery();
+
+			// check if the results exist
+			while(result.next()) {
+				isValidUser = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return isValidUser;
+		
+	}
 }
