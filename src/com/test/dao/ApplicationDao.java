@@ -81,4 +81,34 @@ public class ApplicationDao {
 		return isValidUser;
 		
 	}
+	
+	public User getProfileDetails(String username) {
+		User user = null;
+		try {
+			// get connection to database
+			Connection myConn = DBConnection.getConnectionToDatabase();
+			
+			// search db using the username
+			String sql = "select * from users where username=?";
+			
+			// prepared statement
+			PreparedStatement stmt = myConn.prepareStatement(sql);
+			
+			stmt.setString(1, username);
+			ResultSet result = stmt.executeQuery();
+			while(result.next()) {
+				user = new User();
+				user.setUsername(result.getString("username"));
+				user.setFirstName(result.getString("first_name"));
+				user.setLastName(result.getString("last_name"));
+				user.setAge(result.getInt("age"));
+				user.setActivity(result.getString("activity"));
+			}			
+		}
+		catch(SQLException exception) {
+			exception.printStackTrace();
+		}
+		return user;
+		
+	}
 }
