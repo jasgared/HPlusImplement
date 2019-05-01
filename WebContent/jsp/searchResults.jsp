@@ -14,7 +14,10 @@
 </head>
 <body>
 
-	<%@include file="header.jsp" %>
+	<%-- <%@include file="header.jsp" %> --%>
+	
+	<!-- an alternative to jsp include directive -->
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- #home -->
 
 
