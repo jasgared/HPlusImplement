@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -42,29 +42,27 @@
 
 	<section id="orders" class="section">
 		<div class="container">
-			<c:if test="${requestScope.items!=null}">
+			<c:if test="${requestScope.orders!=null}">
 				<h2 class="headline">
 					<fmt:message key="label.home.orders" bundle="${message}"></fmt:message>
 				</h2>
 				<table id="orderHistory">
 
 					<tr>
-						<th><fmt:message key="label.home.table.header1"
-								bundle="${message}"></fmt:message></th>
+						<th>Order No.</th>
 						<th>Product Name</th>
 						<th>Order Date</th>
 						<th>Product Image</th>
 
 					</tr>
 
-					<c:forEach items="${requestScope.items}" var="item">
+					<c:forEach items="${requestScope.orders}" var="order" varStatus="loop">
 						<tr>
-
-							<td>${item.orderId}</td>
-							<td>${item.productName}</td>
-							<td>${item.orderDate}</td>
+							<td>${loop.count}</td>
+							<td>${order.productName}</td>
+							<td>${order.orderDate}</td>
 							<td><img width="200px" height="150px"
-								src="${item.productImgPath}"></td>
+								src="${order.productImgPath}"></td>
 						</tr>
 					</c:forEach>
 				</table>

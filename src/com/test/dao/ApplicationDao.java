@@ -1,9 +1,10 @@
 package com.test.dao;
 
+import com.test.beans.Order;
 import com.test.beans.Product;
 import com.test.beans.User;
 import java.util.*;
-
+import java.util.Date;
 import java.sql.*;
 
 public class ApplicationDao {
@@ -110,5 +111,36 @@ public class ApplicationDao {
 		}
 		return user;
 		
+	}
+	
+	public List<Order> getOrders(String username) {
+		Order order = null;
+		List<Order> orders = new ArrayList<>();
+		try {
+			Connection myConn = DBConnection.getConnectionToDatabase();
+			
+			String query = "select * from orders where user_name=?";
+			
+			PreparedStatement stmt = myConn.prepareStatement(query);
+			
+			stmt.setString(1, username);
+			
+			ResultSet res = stmt.executeQuery();
+			
+			while(res.next()) {
+				
+				order = new Order();
+				order.setOrderId(res.getInt("order_id"));
+				order.setProductName(res.getString("product_name"));
+				order.setProductImgPath(res.getString("image_path"));
+				order.setOrderDate(new Date(res.getDate("order_date").getTime()));
+				order.setUsername(res.getString("user_name"));
+				orders.add(order);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return orders;
 	}
 }

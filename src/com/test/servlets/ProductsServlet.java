@@ -1,6 +1,7 @@
 package com.test.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.test.beans.Product;
 import com.test.dao.ApplicationDao;
+import com.test.dao.DBConnection;
 
 /**
  * Servlet implementation class ProductsServlet
@@ -47,7 +49,10 @@ public class ProductsServlet extends HttpServlet {
 		String search = (String) session.getAttribute("search");
 		
 		ApplicationDao dao = new ApplicationDao();
-		List<Product> products = dao.searchProducts(search);
+		// getting the connection object through the listener
+		Connection myConn = (Connection) request.getServletContext().getAttribute("dbconnection");
+		
+		List<Product> products = dao.searchProducts(search, myConn);
 		
 		// sending the products through request object to searchResults.jsp
 		request.setAttribute("products", products);
