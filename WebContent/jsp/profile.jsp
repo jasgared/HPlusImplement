@@ -46,7 +46,7 @@
 	</section>
 	<section id="profile" class="section">
 		<div class="container">
-			<h2 class="headline"></h2>
+			<h2 class="headline">Profile details</h2>
 			<table id="profile">
 
 				<tr>
@@ -72,7 +72,30 @@
 
 			</table>
 		</div>
+		<div class="container">
+			<h2 class="headline">Weight Summary</h2>
+			<table id="weight summary">
+				<tr>
+					<td>January</td>
+					<td>${requestScope.weightSummary["January"]}</td>
+				</tr>
+				<tr>
+					<td>February</td>
+					<td>${requestScope.weightSummary["February"]}</td>
+				</tr>
+				<tr>
+					<td>March</td>
+					<td>${requestScope.weightSummary["March"]}</td>
+				</tr>
+				<tr>
+					<td>April</td>
+					<td>${requestScope.weightSummary["April"]}</td>
+				</tr>
+				
+			</table>
+		</div>
 	</section>
+
 
 
 

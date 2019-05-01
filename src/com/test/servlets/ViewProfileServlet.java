@@ -1,6 +1,9 @@
 package com.test.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +33,14 @@ public class ViewProfileServlet extends HttpServlet {
 		
 		request.setAttribute("user", user);
 		
+		// adding weight attribute to request object
+		Map<String , Double> weightSummary = new HashMap<>();
+		weightSummary.put("January", 75.0);
+		weightSummary.put("February", 73.0);
+		weightSummary.put("March", 74.0);
+		weightSummary.put("April", 73.75);
+		
+		request.setAttribute("weightSummary", weightSummary);
 		
 		// forward control to profile.jsp
 		request.getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
