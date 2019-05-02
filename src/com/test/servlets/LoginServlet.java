@@ -17,6 +17,8 @@ import com.test.dao.ApplicationDao;
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("entered the get method");
 		String html = "<html><h3>Please Login</h3></html>";

@@ -1,7 +1,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@taglib uri="http://www.hplus.com/apptags" prefix="myTags"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -38,7 +38,7 @@
     <p>We support and encourage <em>active and healthy</em> lifestyles, by offering <em>ethically sourced</em> and <em>eco-friendly</em> nutritional products for the <em>performance-driven</em> athlete.</p>
   </div>container tagline -->
 	</header>
-
+	<myTags:formatDate date="<%=Calendar.getInstance().getTime() %>" format="dd-MM-YYY"/>
 	<jsp:useBean id="user" scope="request" type="com.test.beans.User"></jsp:useBean>
 	<section>
 

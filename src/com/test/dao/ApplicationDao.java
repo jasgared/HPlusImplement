@@ -76,6 +76,7 @@ public class ApplicationDao {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("validation error");
 			e.printStackTrace();
 		}
 		

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +21,9 @@
 				<ul class="navbar">
 					<li><a href="home">home</a></li>
 					<li><a href="orderHistory">order history</a></li>
+					
 					<!-- <li><a href="viewProfile">view my profile</a></li> -->
+					
 					<li><a href='<%=response.encodeURL("getProfileDetails")%>'>view
 							my profile</a></li>							
 					<li><a href='logout'>logout</a></li>
@@ -31,10 +34,12 @@
 			</div>
 			<!-- container nav-elements -->
 		</nav>
+		
 		<!-- <div class="container tagline">
     <h1 class="headline">Our Mission</h1>
     <p>We support and encourage <em>active and healthy</em> lifestyles, by offering <em>ethically sourced</em> and <em>eco-friendly</em> nutritional products for the <em>performance-driven</em> athlete.</p>
   </div>container tagline -->
+	
 	</header>
 
 	<fmt:setBundle basename="com.test.resources.applicationResources"
@@ -44,7 +49,7 @@
 		<div class="container">
 			<c:if test="${requestScope.orders!=null}">
 				<h2 class="headline">
-					<fmt:message key="label.home.orders" bundle="${message}"></fmt:message>
+					<fmt:message bundle="${message}" key="label.header.order"></fmt:message>
 				</h2>
 				<table id="orderHistory">
 
@@ -60,7 +65,9 @@
 						<tr>
 							<td>${loop.count}</td>
 							<td>${order.productName}</td>
-							<td>${order.orderDate}</td>
+							<td>
+								<fmt:formatDate value="${order.orderDate}" pattern="YYYY-MM-DD"/>
+							</td>
 							<td><img width="200px" height="150px"
 								src="${order.productImgPath}"></td>
 						</tr>
